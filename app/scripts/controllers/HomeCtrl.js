@@ -4,6 +4,6 @@
   }
 
   angular
-    .module('bloc-chat-angularjs')
+    .module('blocChat')
     .controller('HomeCtrl', [HomeCtrl])
 })()

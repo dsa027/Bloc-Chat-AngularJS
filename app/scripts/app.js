@@ -12,9 +12,16 @@
          controller: 'HomeCtrl as home',
          templateUrl: '/templates/home.html'
       })
+
+    $stateProvider
+      .state('rooms', {
+         url: '/rooms',
+         controller: 'RoomsCtrl as rooms',
+         templateUrl: '/templates/rooms.html'
+      })
   }
 
   angular
-    .module('bloc-chat-angularjs', ['ui.router', 'firebase'])
+    .module('blocChat', ['ui.router', 'firebase'])
     .config(config)
 })()
