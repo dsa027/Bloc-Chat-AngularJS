@@ -1,0 +1,22 @@
+<div
+    ng-show="modal.setUsername.showModal"
+    close="modal.setUsername.cancel()"
+    class="new-room">
+  <div class="modal-header">
+    <h2>Set a Username</h2>
+  </div>
+  <div class="modal-body">
+    <p>
+      This name will appear when you send messages
+      <input id="big-text-input" type="text" name="new-room" ng-model="modal.setUsername.newUsername">
+    </p>
+  </div>
+  <div class="modal-footer">
+    <!-- <button class="btn" ng-click="newUsername.cancel()">
+      Cancel
+    </button> -->
+    <button class="btn btn-success" ng-click="modal.setUsername.ok()">
+       Set Username
+    </button>
+  </div>
+</div>

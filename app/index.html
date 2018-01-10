@@ -6,16 +6,19 @@
       <link rel="stylesheet" href="/styles/main.css">
   </head>
   <body>
+    <!-- For dual columns -->
     <div id="header"></div>
     <div id="layoutdims"></div>
     <div class="colmask leftmenu">
       <div class="colleft">
+        <!-- Not on room page, show "Rooms" link in right hand column -->
         <div
             class="col1"
             ng-controller="RoomsCtrl as rooms"
             ng-show="rooms.isOnRoomsPage() == false">
           <br><br><a ui-sref="rooms" id='rooms-link'>Rooms</a>
         </div>
+        <!-- On room page, show a list of messages for the active room -->
         <div class="col1"
             ng-controller="RoomsCtrl as rooms"
             ng-show="rooms.isOnRoomsPage()">
@@ -31,6 +34,9 @@
             <span>{{ message.content }}</span>
           </div>
         </div>
+        <!-- On any page, show "Bloc Chat header, Username, -->
+        <!--    and "Not Me" button if we have a username -->
+        <!-- On rooms page, show "New Room" button and a list of rooms -->
         <div class="col2"  ng-controller="ModalCtrl as modal">
           <p id="leftcolheader">
             Bloc Chat
@@ -55,53 +61,10 @@
           </p>
 
           <!-- New Room Modal -->
-          <div ng-show="modal.newRoom.showModal" close="modal.newRoom.cancel()" class="new-room">
-            <div class="modal-header">
-              <h2>Create a New Room</h2>
-            </div>
-            <div class="modal-body">
-              <p>
-                Enter a room name
-                <input
-                    id="big-text-input"
-                    type="text"
-                    name="new-room"
-                    ng-model="modal.newRoom.newRoom">
-              </p>
-            </div>
-            <div class="modal-footer">
-              <button class="btn" ng-click="modal.newRoom.cancel()">
-                Cancel
-            </button>
-              <button class="btn btn-success" ng-click="modal.newRoom.ok()">
-                 Create Room
-              </button>
-            </div>
-          </div>
+          <div ng-include="'/templates/includes/new_room_modal.html'"></div>
 
           <!-- Set Username Modal -->
-          <div
-              ng-show="modal.setUsername.showModal"
-              close="modal.setUsername.cancel()"
-              class="new-room">
-            <div class="modal-header">
-              <h2>Set a Username</h2>
-            </div>
-            <div class="modal-body">
-              <p>
-                This name will appear when you send messages
-                <input id="big-text-input" type="text" name="new-room" ng-model="modal.setUsername.newUsername">
-              </p>
-            </div>
-            <div class="modal-footer">
-              <!-- <button class="btn" ng-click="newUsername.cancel()">
-                Cancel
-              </button> -->
-              <button class="btn btn-success" ng-click="modal.setUsername.ok()">
-                 Set Username
-              </button>
-            </div>
-          </div>
+          <div ng-include="'/templates/includes/set_username_modal.html'"></div>
 
           <!-- ui.router page -->
           <ui-view></ui-view>
