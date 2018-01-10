@@ -353,3 +353,8 @@ img {
 	padding-top: 3px;
 	padding-bottom: 20px;
 }
+
+#rooms-link {
+	float: left;
+	font-size: 24px;
+}

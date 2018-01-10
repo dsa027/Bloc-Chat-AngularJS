@@ -10,10 +10,18 @@
     <div id="layoutdims"></div>
     <div class="colmask leftmenu">
       <div class="colleft">
+        <div
+            class="col1"
+            ng-controller="RoomsCtrl as rooms"
+            ng-show="rooms.isOnRoomsPage() == false">
+          <br><br><a ui-sref="rooms" id='rooms-link'>Rooms</a>
+        </div>
         <div class="col1"
             ng-controller="RoomsCtrl as rooms"
-            ng-show="rooms.isOnRoomsPage();true">
-          <h3 id="messages-title">{{ rooms.messages.activeRoom }}</h3>
+            ng-show="rooms.isOnRoomsPage()">
+          <h3 id="messages-title">
+            {{ rooms.messages.activeRoom }}
+          </h3>
           <div
               ng-repeat="message in rooms.messages.filterByRoom()"
               ng-style="rooms.messages.messageStyle($index)">
@@ -23,35 +31,79 @@
             <span>{{ message.content }}</span>
           </div>
         </div>
-        <div class="col2" ng-controller="NewRoomModalCtrl as newRoom">
+        <div class="col2"  ng-controller="ModalCtrl as modal">
           <p id="leftcolheader">
             Bloc Chat
             <button
-                ng-show="newRoom.isOnRoomsPage()"
-                type="button" name="new-room-button" class="new-room-button" ng-click="newRoom.open()">
+                ng-show="modal.isOnRoomsPage()"
+                type="button"
+                name="new-room-button"
+                class="new-room-button"
+                ng-click="modal.newRoom.open()">
               New Room
             </button>
           </p>
+          <p>
+            {{ modal.setUsername.newUsername }}
+            <button
+                ng-show="modal.setUsername.newUsername"
+                type="button"
+                class="new-room-button"
+                ng-click="modal.setUsername.resetUsername()">
+              Not Me
+            </button>
+          </p>
+
           <!-- New Room Modal -->
-          <div ng-show="newRoom.showModal" close="newRoom.cancel()" class="new-room">
+          <div ng-show="modal.newRoom.showModal" close="modal.newRoom.cancel()" class="new-room">
             <div class="modal-header">
               <h2>Create a New Room</h2>
             </div>
             <div class="modal-body">
               <p>
                 Enter a room name
-                <input id="big-text-input" type="text" name="new-room" ng-model="newRoom.newRoom">
+                <input
+                    id="big-text-input"
+                    type="text"
+                    name="new-room"
+                    ng-model="modal.newRoom.newRoom">
               </p>
             </div>
             <div class="modal-footer">
-              <button class="btn" ng-click="newRoom.cancel()">
+              <button class="btn" ng-click="modal.newRoom.cancel()">
                 Cancel
             </button>
-              <button class="btn btn-success" ng-click="newRoom.ok()">
+              <button class="btn btn-success" ng-click="modal.newRoom.ok()">
                  Create Room
               </button>
             </div>
           </div>
+
+          <!-- Set Username Modal -->
+          <div
+              ng-show="modal.setUsername.showModal"
+              close="modal.setUsername.cancel()"
+              class="new-room">
+            <div class="modal-header">
+              <h2>Set a Username</h2>
+            </div>
+            <div class="modal-body">
+              <p>
+                This name will appear when you send messages
+                <input id="big-text-input" type="text" name="new-room" ng-model="modal.setUsername.newUsername">
+              </p>
+            </div>
+            <div class="modal-footer">
+              <!-- <button class="btn" ng-click="newUsername.cancel()">
+                Cancel
+              </button> -->
+              <button class="btn btn-success" ng-click="modal.setUsername.ok()">
+                 Set Username
+              </button>
+            </div>
+          </div>
+
+          <!-- ui.router page -->
           <ui-view></ui-view>
         </div>
       </div>
@@ -74,6 +126,11 @@
     <!-- AngularUI Bootstrap -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
 
+    <!-- Angular Cookies -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-cookies.js">
+
+    </script>
+
     <script>
       // Initialize Firebase
       var config = {
@@ -91,8 +148,11 @@
     <script src="/scripts/app.js"></script>
     <script src="/scripts/controllers/HomeCtrl.js"></script>
     <script src="/scripts/controllers/RoomsCtrl.js"></script>
-    <script src="/scripts/controllers/NewRoomModalCtrl.js"></script>
+    <script src="/scripts/controllers/ModalCtrl.js"></script>
+    <script src="/scripts/services/NewRoomModal.js"></script>
+    <script src="/scripts/services/SetUsernameModal.js"></script>
     <script src="/scripts/services/Room.js"></script>
     <script src="/scripts/services/Messages.js"></script>
+    <script src="/scripts/run/BlocChatRun.js"></script>
   </body>
 </html>
