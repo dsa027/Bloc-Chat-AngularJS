@@ -1,7 +1,5 @@
-<div>
-  <ul>
-    <div class="idk" ng-repeat="room in rooms.room.all">
-      <li>{{ room.$value }}</li>
-    </div>
-  </ul>
-</div>
+<ul id="room-list">
+  <li ng-repeat="room in rooms.room.all">
+    {{ room.$value }}
+  </li>
+</ul>

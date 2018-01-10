@@ -19,9 +19,16 @@
          controller: 'RoomsCtrl as rooms',
          templateUrl: '/templates/rooms.html'
       })
+
+    // $stateProvider
+    //   .state('newroom', {
+    //      url: '/newroom',
+    //      controller: 'NewRoomModalCtrl as newroom',
+    //      templateUrl: '/templates/rooms.html'
+    //   })
   }
 
   angular
-    .module('blocChat', ['ui.router', 'firebase'])
+    .module('blocChat', ['ui.router', 'firebase', 'ui.bootstrap.modal'])
     .config(config)
 })()
