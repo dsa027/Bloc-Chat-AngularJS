@@ -2,7 +2,7 @@
   function Room($firebaseArray) {
     const Room = {}
     const ref = firebase.database().ref().child("rooms")
-    const rooms = $firebaseArray(ref)
+    let rooms = $firebaseArray(ref)
 
     Room.all = rooms
 

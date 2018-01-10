@@ -10,13 +10,24 @@
     <div id="layoutdims"></div>
     <div class="colmask leftmenu">
       <div class="colleft">
-        <div class="col1">
-          right column
+        <div class="col1"
+            ng-controller="RoomsCtrl as rooms"
+            ng-show="rooms.isOnRoomsPage();true">
+          <h3 id="messages-title">{{ rooms.messages.activeRoom }}</h3>
+          <div
+              ng-repeat="message in rooms.messages.filterByRoom()"
+              ng-style="rooms.messages.messageStyle($index)">
+            <span>{{ message.username }}</span>
+            <span id="right-justify">{{ message.sentAt }}</span>
+            <br>
+            <span>{{ message.content }}</span>
+          </div>
         </div>
         <div class="col2" ng-controller="NewRoomModalCtrl as newRoom">
           <p id="leftcolheader">
             Bloc Chat
             <button
+                ng-show="newRoom.isOnRoomsPage()"
                 type="button" name="new-room-button" class="new-room-button" ng-click="newRoom.open()">
               New Room
             </button>
@@ -82,5 +93,6 @@
     <script src="/scripts/controllers/RoomsCtrl.js"></script>
     <script src="/scripts/controllers/NewRoomModalCtrl.js"></script>
     <script src="/scripts/services/Room.js"></script>
+    <script src="/scripts/services/Messages.js"></script>
   </body>
 </html>

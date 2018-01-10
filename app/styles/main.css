@@ -1,4 +1,7 @@
 /*  Dual Columns */
+* {
+	font-family: sans-serif;
+}
 body {
 	margin:0;
 	padding:0;
@@ -340,4 +343,13 @@ img {
 	font-size: 20px;
 	line-height: 2rem;
 	width: 95%;
+}
+
+#right-justify {
+	float: right;
+}
+
+#messages-title {
+	padding-top: 3px;
+	padding-bottom: 20px;
 }

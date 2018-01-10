@@ -1,15 +1,13 @@
 (function() {
-  function NewRoomModalCtrl(Room) {
+  function NewRoomModalCtrl(Room, $location) {
     this.showModal = false
     this.newRoom = ""
 
-    this.open = function() {
-      console.log("NewRoomModal.open()");
+    this.open = function open() {
       this.showModal = true
     }
 
-    this.ok = function() {
-      console.log("NewRoomModal.ok()");
+    this.ok = function ok() {
       if (!this.newRoom) return
 
       Room.add(this.newRoom)
@@ -17,14 +15,17 @@
       this.showModal = false
     }
 
-    this.cancel = function() {
-      console.log("NewRoomModal.cancel()");
+    this.cancel = function cancel() {
       this.newRoom = ""
       this.showModal = false
+    }
+
+    this.isOnRoomsPage = function isOnRoomsPage() {
+      return $location.url() === '/rooms'
     }
   }
 
   angular
     .module('blocChat')
-    .controller('NewRoomModalCtrl', ['Room', NewRoomModalCtrl])
+    .controller('NewRoomModalCtrl', ['Room', '$location', NewRoomModalCtrl])
 })()

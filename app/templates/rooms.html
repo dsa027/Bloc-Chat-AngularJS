@@ -1,5 +1,7 @@
 <ul id="room-list">
-  <li ng-repeat="room in rooms.room.all">
+  <li
+      ng-repeat="room in rooms.room.all track by $index"
+      ng-click="rooms.messages.setActiveRoom(room.$value)">
     {{ room.$value }}
   </li>
 </ul>
