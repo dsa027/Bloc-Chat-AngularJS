@@ -7,78 +7,70 @@
   </head>
   <body>
     <!-- For dual columns -->
-    <div id=""></div>
-    <!-- <div id="layoutdims"></div> -->
-    <div class="">
-      <div class="container">
-        <!-- Not on room page, show "Rooms" link in right hand column -->
-        <div
-            class="col_right"
-            ng-controller="RoomsCtrl as rooms"
-            ng-show="rooms.isOnRoomsPage() == false">
-          <br><br><a ui-sref="rooms" id='rooms-link'>Rooms</a>
-        </div>
-        
-        <!-- On room page, show a list of messages for the active room -->
-        <div class="col_right"
-            ng-controller="RoomsCtrl as rooms"
-            ng-show="rooms.isOnRoomsPage()">
-          <h3 id="messages-title">
-            {{ rooms.messages.activeRoom }}
-          </h3>
-          <div
-              ng-repeat="message in rooms.messages.filterByRoom()"
-              class="zebra-stripe">
-            <span>{{ message.username }}</span>
-            <span id="right-justify">{{ message.sentAt }}</span>
-            <br>
-            <span>{{ message.content }}</span>
-          </div>
-          <div id="send-message" ng-show="rooms.messages.activeRoom">
-            <input type="text" id="send-input" ng-model="rooms.messages.newMessage">
-            <button id="send-button" class="btn" ng-click="rooms.messages.sendMessage()">Send</button>
-          </div>
-        </div>
+  <div class="container">
+    <!-- Not on room page, show "Rooms" link in right hand column -->
+    <div
+        class="col_right"
+        ng-controller="RoomsCtrl as rooms"
+        ng-show="rooms.isOnRoomsPage() == false">
+      <br><br><a ui-sref="rooms" id='rooms-link'>Rooms</a>
+    </div>
 
-        <!-- On any page, show "Bloc Chat header, Username, -->
-        <!--    and "Not Me" button if we have a username -->
-        <!-- On rooms page, show "New Room" button and a list of rooms -->
-        <div class="col_left"  ng-controller="ModalCtrl as modal">
-          <p id="leftcolheader">
-            Bloc Chat
-            <button
-                ng-show="modal.isOnRoomsPage()"
-                type="button"
-                name="new-room-button"
-                class="new-room-button"
-                ng-click="modal.newRoom.open()">
-              New Room
-            </button>
-          </p>
-          <p>
-            {{ modal.setUsername.newUsername }}
-            <button
-                ng-show="modal.setUsername.newUsername"
-                type="button"
-                class="new-room-button"
-                ng-click="modal.setUsername.resetUsername()">
-              Not Me
-            </button>
-          </p>
-
-          <!-- New Room Modal -->
-          <div ng-include="'/templates/includes/new_room_modal.html'"></div>
-
-          <!-- Set Username Modal -->
-          <div ng-include="'/templates/includes/set_username_modal.html'"></div>
-
-          <!-- ui.router page -->
-          <ui-view></ui-view>
-        </div>
+    <!-- On room page, show a list of messages for the active room -->
+    <div class="col_right"
+        ng-controller="RoomsCtrl as rooms"
+        ng-show="rooms.isOnRoomsPage()">
+      <h3 id="messages-title">
+        {{ rooms.messages.activeRoom }}
+      </h3>
+      <div
+          ng-repeat="message in rooms.messages.filterByRoom()"
+          class="zebra-stripe">
+        <span>{{ message.username }}</span>
+        <span id="right-justify">{{ message.sentAt }}</span>
+        <br>
+        <span>{{ message.content }}</span>
+      </div>
+      <div id="send-message" ng-show="rooms.messages.activeRoom">
+        <input type="text" id="send-input" ng-model="rooms.messages.newMessage">
+        <button id="send-button" class="btn" ng-click="rooms.messages.sendMessage()">Send</button>
       </div>
     </div>
-    <div id="footer"></div>
 
+    <!-- On any page, show "Bloc Chat header, Username, -->
+    <!--    and "Not Me" button if we have a username -->
+    <!-- On rooms page, show "New Room" button and a list of rooms -->
+    <div class="col_left"  ng-controller="ModalCtrl as modal">
+      <p id="leftcolheader">
+        Bloc Chat
+        <button
+            ng-show="modal.isOnRoomsPage()"
+            type="button"
+            name="new-room-button"
+            class="new-room-button"
+            ng-click="modal.newRoom.open()">
+          New Room
+        </button>
+      </p>
+      <p>
+        {{ modal.setUsername.newUsername }}
+        <button
+            ng-show="modal.setUsername.newUsername"
+            type="button"
+            class="new-room-button"
+            ng-click="modal.setUsername.resetUsername()">
+          Not Me
+        </button>
+      </p>
+
+      <!-- New Room Modal -->
+      <div ng-include="'/templates/includes/new_room_modal.html'"></div>
+
+      <!-- Set Username Modal -->
+      <div ng-include="'/templates/includes/set_username_modal.html'"></div>
+
+      <!-- ui.router page -->
+      <ui-view></ui-view>
     </div>
 
     <!-- Angular -->
