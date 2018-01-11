@@ -8,7 +8,7 @@
   <body>
     <!-- For dual columns -->
     <div id="header"></div>
-    <div id="layoutdims"></div>
+    <!-- <div id="layoutdims"></div> -->
     <div class="colmask leftmenu">
       <div class="colleft">
         <!-- Not on room page, show "Rooms" link in right hand column -->
@@ -19,7 +19,7 @@
           <br><br><a ui-sref="rooms" id='rooms-link'>Rooms</a>
         </div>
         <!-- On room page, show a list of messages for the active room -->
-        <div class="col1"
+        <div class="col1 vh100"
             ng-controller="RoomsCtrl as rooms"
             ng-show="rooms.isOnRoomsPage()">
           <h3 id="messages-title">
@@ -27,11 +27,15 @@
           </h3>
           <div
               ng-repeat="message in rooms.messages.filterByRoom()"
-              ng-style="rooms.messages.messageStyle($index)">
+              class="zebra-stripe">
             <span>{{ message.username }}</span>
             <span id="right-justify">{{ message.sentAt }}</span>
             <br>
             <span>{{ message.content }}</span>
+          </div>
+          <div id="send-message" ng-show="rooms.messages.activeRoom">
+            <input type="text" id="send-input" ng-model="rooms.messages.newMessage">
+            <button id="send-button" class="btn" ng-click="rooms.messages.sendMessage()">Send</button>
           </div>
         </div>
         <!-- On any page, show "Bloc Chat header, Username, -->

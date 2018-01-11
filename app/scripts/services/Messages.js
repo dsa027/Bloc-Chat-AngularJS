@@ -1,11 +1,11 @@
 (function() {
-  function Messages($firebaseArray) {
+  function Messages($firebaseArray, SetUsernameModal) {
     const Messages = {}
     const ref = firebase.database().ref().child("messages").orderByChild('roomId')
     const messages = $firebaseArray(ref)
 
     Messages.activeRoom = ""
-
+    Messages.newMessage = ""
     Messages.all = messages
 
     Messages.filterByRoom = function filterByRoom() {
@@ -18,15 +18,34 @@
       Messages.activeRoom = room
     }
 
-    Messages.messageStyle = function(index) {
-      const style = {
-        'line-height': '1.25rem',
-        padding: '8px'
-      }
-      if (index % 2 !== 0) style.background = 'white'
-      else                 style.background = 'gainsboro'
+    Messages.sendMessage = function sendMessage() {
+      console.log("Messages.sendMessage()", Messages.newMessage);
+      let time = getTime()
+      messages.$add({
+          roomId: Messages.activeRoom,
+          content: Messages.newMessage,
+          sentAt: time,
+          username: SetUsernameModal.newUsername
+      })
+      Messages.newMessage = ""
+    }
 
-      return style
+    const doubleDigit = function doubleDigit(number) {
+      return (number < 10) ? "0" + number : number
+    }
+
+    const getTime = function getTime() {
+      const date = new Date();
+      let hours = date.getHours()
+      let ampm = hours >= 12 ? "PM" : "AM"
+      hours = hours > 12 ? hours - 12 : hours
+
+      return (
+          hours +
+          ":" +
+          doubleDigit(date.getMinutes()) +
+          ampm
+      )
     }
 
     return Messages
@@ -34,5 +53,5 @@
 
   angular
     .module('blocChat')
-    .factory('Messages', ['$firebaseArray', Messages])
+    .factory('Messages', ['$firebaseArray', 'SetUsernameModal', Messages])
 })()
