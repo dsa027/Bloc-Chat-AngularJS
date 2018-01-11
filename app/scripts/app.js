@@ -6,16 +6,16 @@
          requireBase: false
       })
 
-    $stateProvider
-      .state('home', {
-         url: '/',
-         controller: 'HomeCtrl as home',
-         templateUrl: '/templates/home.html'
-      })
+    // $stateProvider
+    //   .state('home', {
+    //      url: '/',
+    //      controller: 'HomeCtrl as home',
+    //      templateUrl: '/templates/home.html'
+    //   })
 
     $stateProvider
       .state('rooms', {
-         url: '/rooms',
+         url: '/',
          controller: 'RoomsCtrl as rooms',
          templateUrl: '/templates/rooms.html'
       })

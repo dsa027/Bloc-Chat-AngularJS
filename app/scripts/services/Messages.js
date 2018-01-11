@@ -1,7 +1,7 @@
 (function() {
   function Messages($firebaseArray, SetUsernameModal) {
     const Messages = {}
-    const ref = firebase.database().ref().child("messages").orderByChild('roomId')
+    const ref = firebase.database().ref().child("messages").orderByChild('sentAt')
     const messages = $firebaseArray(ref)
 
     Messages.activeRoom = ""

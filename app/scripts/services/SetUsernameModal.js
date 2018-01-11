@@ -6,6 +6,8 @@
 
     SetUsernameModal.open = function open() {
       console.log("SetUsernameModal().open");
+      $cookies.remove('blocChatCurrentUser')
+      SetUsernameModal.newUsername = ""
       SetUsernameModal.showModal = true
     }
 
@@ -20,6 +22,7 @@
 
     SetUsernameModal.resetUsername = function resetUsername() {
       console.log("SetUsernameModal().resetUsername()")
+      $cookies.remove('blocChatCurrentUser')
       SetUsernameModal.newUsername = ""
       SetUsernameModal.showModal = true
     }

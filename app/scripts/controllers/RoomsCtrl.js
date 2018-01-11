@@ -4,7 +4,8 @@
     this.messages = Messages
 
     this.isOnRoomsPage = function isOnRoomsPage() {
-      return $location.url() === '/rooms'
+      return true;
+      // return $location.url() === '/rooms'
     }
   }
 

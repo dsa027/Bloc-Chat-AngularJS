@@ -4,7 +4,8 @@
     this.newRoom = NewRoomModal
 
     this.isOnRoomsPage = function isOnRoomsPage() {
-      return $location.url() === '/rooms'
+      return true
+      // return $location.url() === '/rooms'
     }
   }
 

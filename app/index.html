@@ -7,19 +7,20 @@
   </head>
   <body>
     <!-- For dual columns -->
-    <div id="header"></div>
+    <div id=""></div>
     <!-- <div id="layoutdims"></div> -->
-    <div class="colmask leftmenu">
-      <div class="colleft">
+    <div class="">
+      <div class="container">
         <!-- Not on room page, show "Rooms" link in right hand column -->
         <div
-            class="col1"
+            class="col_right"
             ng-controller="RoomsCtrl as rooms"
             ng-show="rooms.isOnRoomsPage() == false">
           <br><br><a ui-sref="rooms" id='rooms-link'>Rooms</a>
         </div>
+        
         <!-- On room page, show a list of messages for the active room -->
-        <div class="col1 vh100"
+        <div class="col_right"
             ng-controller="RoomsCtrl as rooms"
             ng-show="rooms.isOnRoomsPage()">
           <h3 id="messages-title">
@@ -38,10 +39,11 @@
             <button id="send-button" class="btn" ng-click="rooms.messages.sendMessage()">Send</button>
           </div>
         </div>
+
         <!-- On any page, show "Bloc Chat header, Username, -->
         <!--    and "Not Me" button if we have a username -->
         <!-- On rooms page, show "New Room" button and a list of rooms -->
-        <div class="col2"  ng-controller="ModalCtrl as modal">
+        <div class="col_left"  ng-controller="ModalCtrl as modal">
           <p id="leftcolheader">
             Bloc Chat
             <button
