@@ -2,7 +2,8 @@
   function SetUsernameModal($location, $cookies) {
     const SetUsernameModal = {}
     SetUsernameModal.showModal = false
-    SetUsernameModal.newUsername = $cookies.get('blocChatCurrentUser')
+    SetUsernameModal.newUsername = ''
+    // SetUsernameModal.newUsername = $cookies.get('blocChatCurrentUser')
 
     SetUsernameModal.open = function open() {
       console.log("SetUsernameModal().open");
@@ -20,12 +21,12 @@
       SetUsernameModal.showModal = false
     }
 
-    SetUsernameModal.resetUsername = function resetUsername() {
-      console.log("SetUsernameModal().resetUsername()")
-      $cookies.remove('blocChatCurrentUser')
-      SetUsernameModal.newUsername = ""
-      SetUsernameModal.showModal = true
-    }
+    // SetUsernameModal.resetUsername = function resetUsername() {
+    //   console.log("SetUsernameModal().resetUsername()")
+    //   $cookies.remove('blocChatCurrentUser')
+    //   SetUsernameModal.newUsername = ""
+    //   SetUsernameModal.showModal = true
+    // }
 
     return SetUsernameModal
   }

@@ -1,5 +1,5 @@
 (function() {
-  function Messages($firebaseArray, SetUsernameModal) {
+  function Messages($firebaseArray, Authenticate) {
     const Messages = {}
     const ref = firebase.database().ref().child("messages").orderByChild('sentAt')
     const messages = $firebaseArray(ref)
@@ -25,7 +25,7 @@
           roomId: Messages.activeRoom,
           content: Messages.newMessage,
           sentAt: time,
-          username: SetUsernameModal.newUsername
+          username: Authenticate.newUsername
       })
       Messages.newMessage = ""
     }
@@ -53,5 +53,5 @@
 
   angular
     .module('blocChat')
-    .factory('Messages', ['$firebaseArray', 'SetUsernameModal', Messages])
+    .factory('Messages', ['$firebaseArray', 'Authenticate', Messages])
 })()

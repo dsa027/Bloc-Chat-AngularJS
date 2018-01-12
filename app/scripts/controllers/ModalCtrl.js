@@ -1,17 +1,23 @@
 (function() {
-  function ModalCtrl($location, SetUsernameModal, NewRoomModal) {
-    this.setUsername = SetUsernameModal
+  function ModalCtrl($location, Authenticate, NewRoomModal) {
+    this.authenticate = Authenticate
     this.newRoom = NewRoomModal
 
     this.isOnRoomsPage = function isOnRoomsPage() {
       return true
       // return $location.url() === '/rooms'
     }
+
+    this.resetUsername = function resetUsername() {
+      console.log("ModalCtrl().resetUsername()")
+      // $cookies.remove('blocChatCurrentUser')
+      Authenticate.signOut()
+    }
   }
 
   angular
     .module('blocChat')
     .controller('ModalCtrl', [
-        '$location', 'SetUsernameModal', 'NewRoomModal', ModalCtrl
+        '$location', 'Authenticate', 'NewRoomModal', ModalCtrl
     ])
 })()

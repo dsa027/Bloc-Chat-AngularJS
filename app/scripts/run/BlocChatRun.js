@@ -1,12 +1,9 @@
 (function() {
-  function BlocChatRun($cookies, SetUsernameModal) {
-    var currentUser = $cookies.get('blocChatCurrentUser')
-    if (!currentUser || currentUser === '') {
-      SetUsernameModal.showModal = true
-    }
+  function BlocChatRun(Authenticate) {
+    Authenticate.authenticateUser()
   }
 
   angular
     .module('blocChat')
-    .run(['$cookies', 'SetUsernameModal', BlocChatRun])
+    .run(['Authenticate', BlocChatRun])
 })()
