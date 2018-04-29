@@ -1,24 +1,27 @@
 {
-  "name": "bloc-frontend-project-starter",
+  "name": "Bloc-Chat-AngularJS",
   "version": "0.0.4",
-  "description": "Starter project for the Bloc Frontend Web Development",
+  "description": "Chat Rooms written in Angular",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bloc/bloc-frontend-project-starter"
+    "url": "https://github.com/dsa027/Bloc-Chat-AngularJS"
   },
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
-  "author": "Bloc Inc",
+  "author": "David Alderson",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.16.3",
     "hapi": "~16.4.0",
+    "inert": "^4.2.0",
     "path": "^0.4.9",
-    "inert": "^4.2.0"
+    "pikaday": "^1.7.0"
   },
   "engines": {
-    "node": ">=6.11.1"
+    "node": ">=6.11.1",
+    "npm": ">=3.10.10"
   },
   "devDependencies": {
     "connect-modrewrite": "^0.7.9",
