@@ -25,7 +25,7 @@
           roomId: Messages.activeRoom,
           content: Messages.newMessage,
           sentAt: time,
-          username: Authenticate.newUsername
+          username: Authenticate.newUsername.replace(/^['"](.*)['"]$/, '$1')
       })
       Messages.newMessage = ""
     }

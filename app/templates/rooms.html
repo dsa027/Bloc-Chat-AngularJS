@@ -1,7 +1,7 @@
 <ul id="room-list">
   <li
       ng-repeat="room in rooms.room.all track by $index"
-      ng-click="rooms.messages.setActiveRoom(room.$value)">
-    {{ room.$value }}
+      ng-click="rooms.messages.setActiveRoom(room.roomId)">
+    {{room.roomId}}
   </li>
 </ul>
